@@ -1,0 +1,40 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AutomotorDto, CreateAutomotorDto, SujetoDto, UpdateAutomotorDto } from './automotor.dtos';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AutomotorService {
+  private apiAutomotorUrl = 'http://localhost:3000/automotores';
+  private apiSujetoUrl = 'http://localhost:3000/sujetos';
+
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<AutomotorDto[]> {
+    return this.http.get<AutomotorDto[]>(this.apiAutomotorUrl);
+  }
+
+  getByDominio(dominio: string): Observable<AutomotorDto> {
+    return this.http.get<AutomotorDto>(`${this.apiAutomotorUrl}/${dominio}`);
+  }
+
+  create(data: CreateAutomotorDto): Observable<void> {
+    return this.http.post<void>(this.apiAutomotorUrl, data);
+  }
+
+  update(dominio: string, data: UpdateAutomotorDto): Observable<void> {
+    return this.http.put<void>(`${this.apiAutomotorUrl}/${dominio}`, data);
+  }
+
+  delete(dominio: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiAutomotorUrl}/${dominio}`);
+  }
+  
+  getSujetoByCuit(cuit: string): Observable<SujetoDto> {
+    return this.http.get<SujetoDto>(`${this.apiSujetoUrl}/by-cuit`, {
+      params: { cuit } 
+    });
+  }
+}

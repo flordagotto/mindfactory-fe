@@ -1,27 +1,45 @@
-<form [formGroup]="form">
-  <label>Dominio:</label>
-  <input formControlName="dominio" />
-  <button type="button" (click)="buscar()">Buscar</button>
-  <br/>
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <div style="margin-bottom: 12px;">
+    <label>Dominio:</label><br/>
+    <input formControlName="dominio" />
+    <button type="button" (click)="buscar()">Buscar</button>
+    <button type="button" (click)="resetForm()">Limpiar todos los campos</button>
+  </div>
 
-  <label>N° Chasis:</label>
-  <input name="numeroChasis"/>
+  <div style="margin-bottom: 12px;">
+    <label>N° Chasis:</label><br/>
+    <input formControlName="numeroChasis" />
+  </div>
 
-  <label>N° Motor:</label>
-  <input name="numeroMotor" />
+  <div style="margin-bottom: 12px;">
+    <label>N° Motor:</label><br/>
+    <input formControlName="numeroMotor" />
+  </div>
 
-  <label>Color:</label>
-  <input name="color"/>
+  <div style="margin-bottom: 12px;">
+    <label>Color:</label><br/>
+    <input formControlName="color" />
+  </div>
 
-  <label>Fecha Fabricación (YYYYMM):</label>
-  <input name="fechaFabricacion" required />
+  <div style="margin-bottom: 12px;">
+    <label>Fecha Fabricación (YYYYMM):</label><br/>
+    <input formControlName="fechaFabricacion" required />
+  </div>
 
-  <label>CUIT Dueño:</label>
-  <input name="cuitDuenio" required />
-  <button type="button" (click)="buscarSujeto()">Buscar Sujeto</button>
+  <div style="margin-bottom: 12px;">
+    <label>CUIT Dueño:</label><br/>
+    <input formControlName="cuit" required />
+    <button type="button" (click)="buscarSujeto()">Buscar Sujeto</button>
+  </div>
 
-  <label>Denominación Dueño:</label>
-  <input name="denominacion" readonly />
+  <div style="margin-bottom: 12px;">
+    <label>Denominación Dueño:</label><br/>
+    <input formControlName="denominacion" readonly />
+  </div>
 
-  <button type="submit">Guardar/Alta</button>
+  <div style="margin-top: 16px;">
+    <button type="submit">Guardar/Actualizar</button>
+  </div>
+
+  <p *ngIf="mensaje" style="margin-top: 12px; color: green;">{{ mensaje }}</p>
 </form>
