@@ -15,6 +15,11 @@ export interface UpdateAutomotorDto{
   cuitDuenio?: string;
 };
 
+export interface CreateSujetoDto {
+  spo_cuit: string;
+  spo_denominacion: string;
+}
+
 export interface AutomotorDto{
   id: number;
   dominio: string;

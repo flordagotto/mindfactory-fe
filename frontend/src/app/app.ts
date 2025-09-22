@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [RouterOutlet, CommonModule, AutomotorFormComponent, HttpClientModule],
   template: `
     <h1>Gestión de Automotores</h1>
-    <app-automotor-form></app-automotor-form>
+    <router-outlet></router-outlet>
   `,
 })
 export class App {

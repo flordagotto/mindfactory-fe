@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { AutomotorDto, CreateAutomotorDto, SujetoDto, UpdateAutomotorDto } from '../automotor.dtos';
-import { AutomotorService } from '../service';
+import { AutomotorDto, CreateAutomotorDto, SujetoDto, UpdateAutomotorDto } from '../../common/dtos';
+import { AutomotorService } from '../../common/service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-automotor-form',
@@ -15,7 +16,7 @@ export class AutomotorFormComponent {
   mensaje: string = '';
   existingAutomotor: AutomotorDto | null = null;
 
-  constructor(private fb: FormBuilder, private service: AutomotorService) {
+  constructor(private fb: FormBuilder, private service: AutomotorService, private router: Router) {
     this.form = this.fb.group({
       dominio: ['', Validators.required],
       numeroChasis: [''],
@@ -142,5 +143,9 @@ export class AutomotorFormComponent {
         }
       });
     }
+  }
+
+  irAListado() {
+    this.router.navigate(['/automotor-list']);
   }
 }

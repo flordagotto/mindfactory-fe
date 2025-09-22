@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AutomotorDto, CreateAutomotorDto, SujetoDto, UpdateAutomotorDto } from './automotor.dtos';
+import { AutomotorDto, CreateAutomotorDto, CreateSujetoDto, SujetoDto, UpdateAutomotorDto } from './dtos';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -36,5 +36,9 @@ export class AutomotorService {
     return this.http.get<SujetoDto>(`${this.apiSujetoUrl}/by-cuit`, {
       params: { cuit } 
     });
+  }
+  
+  createSujeto(data: CreateSujetoDto): Observable<void> {
+    return this.http.post<void>(this.apiSujetoUrl, data);
   }
 }

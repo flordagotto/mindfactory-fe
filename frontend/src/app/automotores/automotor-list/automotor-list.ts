@@ -1,11 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AutomotorService } from '../../common/service';
+import { AutomotorDto } from '../../common/dtos';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-automotor-list',
-  imports: [],
   templateUrl: './automotor-list.html',
-  styleUrl: './automotor-list.css'
+  imports: [CommonModule, ReactiveFormsModule],
 })
-export class AutomotorList {
+export class AutomotorList implements OnInit {
 
+  automotores: AutomotorDto[] = [];
+  mensaje: string = '';
+
+  constructor(private automotorService: AutomotorService, private router: Router) {}
+
+  ngOnInit() {
+    this.cargarAutomotores();
+  }
+
+  cargarAutomotores() {
+    this.automotorService.getAll().subscribe({
+      next: (res) => {
+        this.automotores = res;
+      },
+      error: (err) => {
+        console.error(err);
+        this.mensaje = 'Error al cargar los automotores';
+      }
+    });
+  }
+
+  irAForm() {
+    this.router.navigate(['/automotor-form']);
+  }
 }
