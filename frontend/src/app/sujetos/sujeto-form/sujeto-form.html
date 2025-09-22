@@ -4,11 +4,22 @@
   <div style="margin-bottom: 12px;">
     <label>CUIT:</label><br/>
     <input formControlName="spo_cuit" required />
+    <small *ngIf="spo_cuit?.errors?.['required'] && spo_cuit?.touched" style="color:red">
+      El CUIT es obligatorio
+    </small>
+    <small *ngIf="spo_cuit?.errors?.['pattern']" style="color:red">
+      El CUIT debe tener exactamente 11 dígitos numéricos
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>Denominación:</label><br/>
     <input formControlName="spo_denominacion" required />
+    <small *ngIf="spo_denominacion?.errors?.['required'] && spo_denominacion?.touched" style="color:red">
+      La denominación es obligatoria
+    </small>
+    <small *ngIf="spo_denominacion?.errors?.['maxlength']" style="color:red">
+      La denominación no puede superar los 160 caracteres
+    </small>
   </div>
 
   <button type="submit">Guardar Sujeto</button>

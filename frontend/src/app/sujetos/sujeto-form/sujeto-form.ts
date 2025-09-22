@@ -17,8 +17,20 @@ export class SujetoFormComponent {
 
   constructor(private fb: FormBuilder, private sujetoService: Service, private router: Router) {
     this.form = this.fb.group({
-      spo_cuit: ['', [Validators.required]],
-      spo_denominacion: ['', [Validators.required]],
+       spo_cuit: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(/^\d{11}$/)
+          ]
+        ],
+        spo_denominacion: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(160)
+          ]
+        ]
     });
   }
 
@@ -40,6 +52,9 @@ export class SujetoFormComponent {
       }
     });
   }
+  
+  get spo_cuit() { return this.form.get('spo_cuit'); }
+  get spo_denominacion() { return this.form.get('spo_denominacion'); }
   
   irAForm() {
     this.router.navigate(['/automotor-form']);

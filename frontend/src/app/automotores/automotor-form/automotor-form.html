@@ -4,41 +4,68 @@
     <input formControlName="dominio" />
     <button type="button" (click)="buscar()">Buscar</button>
     <button type="button" (click)="resetForm()">Limpiar todos los campos</button>
+    <small *ngIf="dominio?.errors?.['required'] && dominio?.touched" style="color:red">
+      El dominio es obligatorio
+    </small>
+    <small *ngIf="dominio?.errors?.['pattern']" style="color:red">
+      Formato inválido (ej: AA999AA)
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>N° Chasis:</label><br/>
     <input formControlName="numeroChasis" />
+    <small *ngIf="numeroChasis?.errors?.['maxlength']" style="color:red">
+      Máximo 25 caracteres
+    </small>
+    <small *ngIf="numeroChasis?.errors?.['pattern']" style="color:red">
+      Solo letras y números permitidos
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>N° Motor:</label><br/>
     <input formControlName="numeroMotor" />
+    <small *ngIf="numeroMotor?.errors?.['maxlength']" style="color:red">
+      Máximo 25 caracteres
+    </small>
+    <small *ngIf="numeroMotor?.errors?.['pattern']" style="color:red">
+      Solo letras y números permitidos
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>Color:</label><br/>
     <input formControlName="color" />
+    <small *ngIf="color?.errors?.['maxlength']" style="color:red">
+      Máximo 40 caracteres
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>Fecha Fabricación (YYYYMM):</label><br/>
     <input formControlName="fechaFabricacion" required />
+    <small *ngIf="fechaFabricacion?.errors?.['required'] && fechaFabricacion?.touched" style="color:red">
+      La fecha de fabricación es obligatoria
+    </small>
+    <small *ngIf="fechaFabricacion?.errors?.['pattern']" style="color:red">
+      Debe estar en formato YYYYMM válido
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>CUIT Dueño:</label><br/>
     <input formControlName="cuit" required />
     <button type="button" (click)="buscarSujeto()">Buscar Sujeto</button>
+    <small *ngIf="cuit?.errors?.['required'] && cuit?.touched" style="color:red">
+      El CUIT es obligatorio
+    </small>
+    <small *ngIf="cuit?.errors?.['pattern']" style="color:red">
+      El CUIT debe tener exactamente 11 dígitos numéricos
+    </small>
   </div>
-
   <div style="margin-bottom: 12px;">
     <label>Denominación Dueño:</label><br/>
     <input formControlName="denominacion" readonly />
   </div>
 
   <div style="margin-top: 16px;">
-    <button type="submit">Guardar/Actualizar</button>
+    <button type="submit" [disabled]="form.invalid">Guardar/Actualizar</button>
   </div>
 
   <p *ngIf="mensaje" style="margin-top: 12px; color: green;">{{ mensaje }}</p>

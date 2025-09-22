@@ -18,14 +18,37 @@ export class AutomotorFormComponent {
 
   constructor(private fb: FormBuilder, private service: Service, private router: Router) {
     this.form = this.fb.group({
-      dominio: ['', Validators.required],
-      numeroChasis: [''],
-      numeroMotor: [''],
-      color: [''],
-      fechaFabricacion: ['', Validators.required],
-      cuit: ['', Validators.required],
-      denominacion: ['', Validators.required],
-    });
+    cuit: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^\d{11}$/), 
+      ],
+    ],
+    dominio: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Z]{2}[0-9]{3}[A-Z]{2}$/), 
+      ],
+    ],
+    numeroChasis: [
+      '',
+      [Validators.maxLength(25), Validators.pattern(/^[A-Za-z0-9]*$/)],
+    ],
+    numeroMotor: [
+      '',
+      [Validators.maxLength(25), Validators.pattern(/^[A-Za-z0-9]*$/)],
+    ],
+    color: ['', [Validators.maxLength(40)]],
+    fechaFabricacion: [
+      '',
+      [
+        Validators.pattern(/^(19|20)\d{2}(0[1-9]|1[0-2])$/), 
+      ],
+    ],
+    denominacion: ['', Validators.required]
+  });
   }
 
   buscar() {
@@ -144,6 +167,14 @@ export class AutomotorFormComponent {
       });
     }
   }
+
+  get dominio() { return this.form.get('dominio'); }
+  get numeroChasis() { return this.form.get('numeroChasis'); }
+  get numeroMotor() { return this.form.get('numeroMotor'); }
+  get color() { return this.form.get('color'); }
+  get fechaFabricacion() { return this.form.get('fechaFabricacion'); }
+  get cuit() { return this.form.get('cuit'); }
+  get denominacion() { return this.form.get('denominacion'); }
 
   irAListado() {
     this.router.navigate(['/automotor-list']);
