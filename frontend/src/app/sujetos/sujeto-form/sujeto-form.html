@@ -1,0 +1,20 @@
+<h2>Crear Nuevo Sujeto</h2>
+
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <div style="margin-bottom: 12px;">
+    <label>CUIT:</label><br/>
+    <input formControlName="spo_cuit" required />
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <label>Denominación:</label><br/>
+    <input formControlName="spo_denominacion" required />
+  </div>
+
+  <button type="submit">Guardar Sujeto</button>
+</form>
+
+<p *ngIf="mensaje" style="margin-top: 12px; color: green;">{{ mensaje }}</p>
+
+<button type="button" (click)="irAForm()">Crear Automotores</button>
+<button type="button" (click)="irAListado()">Ver Todos los Automotores</button>

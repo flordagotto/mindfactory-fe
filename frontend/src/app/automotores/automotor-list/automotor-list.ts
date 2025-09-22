@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AutomotorService } from '../../common/service';
+import { Service } from '../../common/service';
 import { AutomotorDto } from '../../common/dtos';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ export class AutomotorList implements OnInit {
   automotores: AutomotorDto[] = [];
   mensaje: string = '';
 
-  constructor(private automotorService: AutomotorService, private router: Router) {}
+  constructor(private automotorService: Service, private router: Router) {}
 
   ngOnInit() {
     this.cargarAutomotores();
@@ -35,5 +35,9 @@ export class AutomotorList implements OnInit {
 
   irAForm() {
     this.router.navigate(['/automotor-form']);
+  }
+  
+  irACrearSujeto() {
+    this.router.navigate(['/sujeto-form']);
   }
 }

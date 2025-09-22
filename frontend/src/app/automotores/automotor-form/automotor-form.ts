@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AutomotorDto, CreateAutomotorDto, SujetoDto, UpdateAutomotorDto } from '../../common/dtos';
-import { AutomotorService } from '../../common/service';
+import { Service } from '../../common/service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class AutomotorFormComponent {
   mensaje: string = '';
   existingAutomotor: AutomotorDto | null = null;
 
-  constructor(private fb: FormBuilder, private service: AutomotorService, private router: Router) {
+  constructor(private fb: FormBuilder, private service: Service, private router: Router) {
     this.form = this.fb.group({
       dominio: ['', Validators.required],
       numeroChasis: [''],
@@ -147,5 +147,9 @@ export class AutomotorFormComponent {
 
   irAListado() {
     this.router.navigate(['/automotor-list']);
+  }
+  
+  irACrearSujeto() {
+    this.router.navigate(['/sujeto-form']);
   }
 }

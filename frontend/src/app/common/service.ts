@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AutomotorService {
+export class Service {
   private apiAutomotorUrl = 'http://localhost:3000/automotores';
   private apiSujetoUrl = 'http://localhost:3000/sujetos';
 
