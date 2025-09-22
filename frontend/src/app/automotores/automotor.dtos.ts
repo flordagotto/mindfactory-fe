@@ -5,7 +5,6 @@ export interface CreateAutomotorDto {
   numeroMotor?: string;
   color?: string;
   fechaFabricacion: string;
-  fechaAltoRegistro: Date;
 };
 
 export interface UpdateAutomotorDto{
