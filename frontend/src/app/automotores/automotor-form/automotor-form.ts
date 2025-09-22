@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AutomotorDto } from '../automotor.dtos';
 import { AutomotorService } from '../automotor.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-automotor-form',
@@ -16,13 +16,13 @@ export class AutomotorFormComponent {
 
   constructor(private fb: FormBuilder, private automotorService: AutomotorService) {
     this.form = this.fb.group({
-      dominio: [''],
+      dominio: ['', Validators.required],
       numeroChasis: [''],
       numeroMotor: [''],
       color: [''],
       fechaFabricacion: [''],
       cuit: [''],
-      denominacion: [{ value: '', disabled: true }],
+      denominacion: [''],
     });
   }
 
@@ -40,16 +40,20 @@ export class AutomotorFormComponent {
           cuit: auto.sujeto?.cuit,
           denominacion: auto.sujeto?.denominacion,
         });
-        this.mensaje = 'Automotor cargado correctamente';
+        this.mensaje = 'El automotor cargado existe. Puede modificarlo.';
       },
       error: () => {
-        this.mensaje = 'No se encontró el automotor';
+        this.mensaje = 'No se encontró un automotor con ese dominio. Cree uno nuevo.';
         this.form.reset();
-      }
+      },
     });
   }
 
   buscarSujeto(){
+
+  }
+  
+  guardar(){
 
   }
 }
