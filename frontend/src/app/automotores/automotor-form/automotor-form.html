@@ -1,0 +1,27 @@
+<form [formGroup]="form">
+  <label>Dominio:</label>
+  <input formControlName="dominio" />
+  <button type="button" (click)="buscar()">Buscar</button>
+  <br/>
+
+  <label>N° Chasis:</label>
+  <input name="numeroChasis"/>
+
+  <label>N° Motor:</label>
+  <input name="numeroMotor" />
+
+  <label>Color:</label>
+  <input name="color"/>
+
+  <label>Fecha Fabricación (YYYYMM):</label>
+  <input name="fechaFabricacion" required />
+
+  <label>CUIT Dueño:</label>
+  <input name="cuitDuenio" required />
+  <button type="button" (click)="buscarSujeto()">Buscar Sujeto</button>
+
+  <label>Denominación Dueño:</label>
+  <input name="denominacion" readonly />
+
+  <button type="submit">Guardar/Alta</button>
+</form>
