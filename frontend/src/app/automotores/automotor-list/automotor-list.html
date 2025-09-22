@@ -13,6 +13,7 @@
       <th>CUIT Dueño</th>
       <th>Denominación Dueño</th>
       <th>Objeto de Valor</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +26,9 @@
       <td>{{ auto.sujeto?.cuit || '-' }}</td>
       <td>{{ auto.sujeto?.denominacion || '-' }}</td>
       <td>{{ auto.objetoDeValor?.codigo }} - {{ auto.objetoDeValor?.descripcion || '-' }}</td>
+      <td>
+        <button (click)="borrar(auto.dominio)">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>

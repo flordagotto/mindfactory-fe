@@ -33,6 +33,20 @@ export class AutomotorList implements OnInit {
     });
   }
 
+   borrar(dominio: string) {
+    if (!confirm('¿Seguro que quieres eliminar este automotor?')) return;
+
+    this.automotorService.delete(dominio).subscribe({
+      next: () => {
+        this.mensaje = 'Automotor eliminado correctamente';
+        this.cargarAutomotores();
+      },
+      error: () => {
+        this.mensaje = 'Error al eliminar automotor';
+      },
+    });
+  }
+
   irAForm() {
     this.router.navigate(['/automotor-form']);
   }
